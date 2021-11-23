@@ -8,3 +8,18 @@ html,
 body {
     font: 18px/1.7 'Open Sans', sans-serif;
 }
+
+a {
+    color: $main_highlite;
+    transition: opacity 0.3s;
+    opacity: 1;
+
+    &:visited {
+        color: $main_highlite;
+    }
+
+    &:hover,
+    &:active {
+        opacity: 0.7;
+    }
+}
