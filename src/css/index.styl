@@ -9,13 +9,19 @@ body {
     font: 18px/1.7 'Open Sans', sans-serif;
 }
 
+body {
+    background: $main_dark url("/images/cover.jpg") no-repeat center top;
+    background-size: 100% auto;
+    color: $main_lite;
+}
+
 a {
     color: $main_highlite;
     transition: opacity 0.3s;
     opacity: 1;
 
     &:visited {
-        color: $main_highlite;
+        color: darken($main_highlite, 10);
     }
 
     &:hover,
