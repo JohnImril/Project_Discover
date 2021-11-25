@@ -29,3 +29,25 @@ a {
         opacity: 0.7;
     }
 }
+
+/* Main styles */
+.cover-space{
+    padding-bottom 82%;
+}
+
+.header {
+    position: absolute;
+    top: 2rem;
+    width: 100%;
+
+    &__content {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        padding: 0 $main_shift;
+    }
+
+    &__center {
+        display: flex;
+        justify-content: center;
+    }
+}
