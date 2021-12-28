@@ -56,6 +56,7 @@ html(lang="ru")
                     a.arrow-link(href="#")
                         | read more 
                         .arrow-link__icon.icon__arrow_rightward
-
-
-
+            section.section
+                #gallery.gallery
+                    each imageUrl in ['/images/gallery.jpg', '/images/gallery.jpg', '/images/gallery.jpg', '/images/gallery.jpg', '/images/gallery.jpg']
+                        .gallery__slide(style={'background-image': `url("${imageUrl}")`})
