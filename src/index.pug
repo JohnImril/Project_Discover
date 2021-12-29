@@ -7,6 +7,8 @@ html(lang="ru")
         link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
         link(href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet")
         link(rel="stylesheet" href="/css/reset.css")
+        link(rel="stylesheet" href="/js/libs/gallery.css")
+        link(rel="stylesheet" href="/js/libs/gallery.js")
         link(rel="stylesheet" href="/css/index.css")
     body
         .cover-space
@@ -60,3 +62,4 @@ html(lang="ru")
                 #gallery.gallery
                     each imageUrl in ['/images/gallery.jpg', '/images/gallery.jpg', '/images/gallery.jpg', '/images/gallery.jpg', '/images/gallery.jpg']
                         .gallery__slide(style={'background-image': `url("${imageUrl}")`})
+            script(src="/js/index.js")
