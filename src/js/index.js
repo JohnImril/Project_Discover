@@ -1,1 +1,1 @@
-new Gallery(document.getElementById('gallery'));
+new Gallery(document.getElementById("gallery"));

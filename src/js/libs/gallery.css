@@ -1,13 +1,13 @@
 .gallery {
-    width: 100%;
-    overflow: hidden;
+	width: 100%;
+	overflow: hidden;
 }
 
-    .gallery-line {
-        overflow: hidden;
-    }
+.gallery-line {
+	overflow: hidden;
+}
 
-    .gallery-slide {
-        min-height: 1px;
-        float: left;
-    }
+.gallery-slide {
+	min-height: 1px;
+	float: left;
+}
