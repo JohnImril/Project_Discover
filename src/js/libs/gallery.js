@@ -43,6 +43,7 @@ class Gallery {
 	setParameters() {
 		const coordsContainer = this.containerNode.getBoundingClientRect();
 		this.width = coordsContainer.width;
+		this.maximumX = -(this.size - 1) * this.width;
 		this.x = -this.currentSlide * this.width;
 
 		this.lineNode.style.width = `${this.size * this.width}px`;
@@ -69,6 +70,7 @@ class Gallery {
 		this.currentSlideWasChanged = false;
 		this.clickX = evt.pageX;
 		this.startX = this.x;
+		this.resetStylePosition();
 		window.addEventListener("pointermove", this.dragging);
 	}
 
@@ -76,12 +78,14 @@ class Gallery {
 		window.removeEventListener("pointermove", this.dragging);
 		this.x = -this.currentSlide * this.width;
 		this.setStylePosition();
+		this.setStyleTransition();
 	}
 
 	dragging(evt) {
 		this.dragX = evt.pageX;
 		const dragShift = this.dragX - this.clickX;
-		this.x = this.startX + dragShift;
+		const easing = dragShift / 5;
+		this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
 		this.setStylePosition();
 
 		// Change active slide
@@ -97,6 +101,14 @@ class Gallery {
 
 	setStylePosition() {
 		this.lineNode.style.transform = `translate3d(${this.x}px, 0, 0)`;
+	}
+
+	setStyleTransition() {
+		this.lineNode.style.transition = `all 0.25s ease 0s`;
+	}
+
+	resetStyleTransition() {
+		this.lineNode.style.transition = `all 0s ease 0s`;
 	}
 }
 
