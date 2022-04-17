@@ -1,6 +1,12 @@
 .gallery {
 	width: 100%;
 	overflow: hidden;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.gallery-draggable {
+	cursor: grabbing;
 }
 
 .gallery-line {
@@ -10,4 +16,39 @@
 .gallery-slide {
 	min-height: 1px;
 	float: left;
+	transform: translateZ(0);
+}
+
+.gallery-dots {
+	display: flex;
+	justify-content: center;
+}
+
+.gallery-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #ccc;
+	margin: 0.4rem;
+	cursor: pointer;
+	transition: all 0.3s;
+	border: none;
+	outline: none;
+	padding: 0;
+}
+
+.gallery-dot:hover,
+.gallery-dot-active {
+	background: #888;
+}
+
+.gallery-nav {
+	display: flex;
+	justify-content: center;
+	padding: 1rem 0 0;
+}
+
+.gallery-nav button {
+	margin: 0.5rem;
+	cursor: pointer;
 }
