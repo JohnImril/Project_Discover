@@ -19,10 +19,11 @@ class Gallery {
 		this.currentSlideWasChanged = false;
 		this.settings = {
 			margin: options.margin || 0,
+			dots: options.dots || false,
 		};
 
-		this.manageHTML = this.manageHTML.blind(this);
-		this.setParameters = this.setParameters.blind(this);
+		this.manageHTML = this.manageHTML.bind(this);
+		this.setParameters = this.setParameters.bind(this);
 		this.setEvents = this.setEvents.bind(this);
 		this.resizeGallery = this.resizeGallery.bind(this);
 		this.startDrag = this.startDrag.bind(this);
@@ -67,16 +68,20 @@ class Gallery {
 			})
 		);
 
-		this.dotsNode.innerHtml = Array.from(Array(this.size).keys())
-			.map(
-				(key) =>
-					`<button class="${GalleryDotClassName} ${
-						key === this.currentSlide ? GalleryDotActiveClassName : ""
-					}"</button>`
-			)
-			.join("");
+		if (this.settings.dots) {
+			this.dotNodes = this.containerNode.querySelector(`.${GalleryDotsClassName}`);
 
-		this.dotNodes = this.lineContainerNode.querySelectorAll(`.${GalleryDotClassName}`);
+			this.dotsNode.innerHtml = Array.from(Array(this.size).keys())
+				.map(
+					(key) =>
+						`<button class="${GalleryDotClassName} ${
+							key === this.currentSlide ? GalleryDotActiveClassName : ""
+						}"</button>`
+				)
+				.join("");
+
+			this.dotNodes = this.lineContainerNode.querySelectorAll(`.${GalleryDotClassName}`);
+		}
 		this.navLeft = this.containerNode.querySelector(`.${GalleryNavLeftClassName}`);
 		this.navRight = this.containerNode.querySelector(`.${GalleryNavRightClassName}`);
 	}
@@ -90,7 +95,10 @@ class Gallery {
 		this.resetStyleTransition();
 		this.lineNode.style.width = `${this.size * (this.width + this.settings.margin)}px`;
 		this.setStylePosition();
-		this.changeActiveDotClass();
+
+		if (this.settings.dots) {
+			this.changeActiveDotClass();
+		}
 		this.changeDisabledNav();
 
 		Array.from(this.slideNodes).forEach((slideNode) => {
@@ -106,7 +114,9 @@ class Gallery {
 		window.addEventListener("pointerup", this.stopDrag);
 		window.addEventListener("pointercancel", this.stopDrag);
 
-		this.dotsNode.addEventListener("click", this.clickDots);
+		if (this.settings.dots) {
+			this.dotsNode.addEventListener("click", this.clickDots);
+		}
 		this.navLeft.addEventListener("click", this.moveToLeft);
 		this.navRight.addEventListener("click", this.moveToRight);
 	}
@@ -117,7 +127,9 @@ class Gallery {
 		window.removeEventListener("pointerup", this.stopDrag);
 		window.removeEventListener("pointercancel", this.stopDrag);
 
-		this.dotsNode.removeEventListener("click", this.clickDots);
+		if (this.settings.dots) {
+			this.dotsNode.removeEventListener("click", this.clickDots);
+		}
 		this.navLeft.removeEventListener("click", this.moveToLeft);
 		this.navRight.removeEventListener("click", this.moveToRight);
 	}
@@ -207,7 +219,10 @@ class Gallery {
 		this.x = -this.currentSlide * (this.width + this.settings.margin);
 		this.setStylePosition();
 		this.setStyleTransition(countSwipes);
-		this.changeActiveDotClass();
+
+		if (this.settings.dots) {
+			this.changeActiveDotClass();
+		}
 		this.changeDisabledNav();
 	}
 
@@ -251,7 +266,7 @@ function wrapElementByDiv({ element, className }) {
 	const wrapperNode = document.createElement("div");
 	wrapperNode.classList.add(className);
 
-	element.parentNode.insertBefore(wrapperNode);
+	element.parentNode.insertBefore(wrapperNode, element);
 	wrapperNode.appendChild(element);
 
 	return wrapperNode;
