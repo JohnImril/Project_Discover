@@ -44,10 +44,10 @@ class Gallery {
 
 	manageHTML() {
 		this.containerNode.classList.add(GalleryClassName);
-		this.containerNode.innerHtml = `
+		this.containerNode.innerHTML = `
 			<div class="${GalleryLineContainerClassName}">
             	<div class="${GalleryLineClassName}">
-             		${this.containerNode.innerHtml}
+             		${this.containerNode.innerHTML}
             <div>
 			</div>
             <div class="${GalleryNavClassName}">
@@ -71,7 +71,7 @@ class Gallery {
 		if (this.settings.dots) {
 			this.dotNodes = this.containerNode.querySelector(`.${GalleryDotsClassName}`);
 
-			this.dotsNode.innerHtml = Array.from(Array(this.size).keys())
+			this.dotsNode.innerHTML = Array.from(Array(this.size).keys())
 				.map(
 					(key) =>
 						`<button class="${GalleryDotClassName} ${
@@ -142,7 +142,7 @@ class Gallery {
 		this.clickX = evt.pageX;
 		this.startX = this.x;
 
-		this.resetStylePosition();
+		this.resetStyleTransition();
 
 		this.containerNode.classList.add(GalleryDraggableClassName);
 		window.addEventListener("pointermove", this.dragging);
