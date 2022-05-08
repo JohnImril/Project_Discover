@@ -49,7 +49,7 @@ html(lang="ru")
                     | Scroll down
                     .scroll-down__icon.icon__arrow_downward        
             .content
-                section.section-cols
+                section.section.section-cols
                     img.section-col.section-col_image(src="/images/enjoy.jpg" alt="Mountains")
                     .section-col.section-col__content
                         .main-title.main-title_small
@@ -61,6 +61,15 @@ html(lang="ru")
                             .arrow-link__icon.icon__arrow_rightward
                 section.section
                     #gallery.gallery
-                        each imageUrl in ['/images/gallery.jpg', '/images/gallery.jpg', '/images/gallery.jpg', '/images/gallery.jpg', '/images/gallery.jpg']
+                        each imageUrl in ['/images/gallery.jpg', '/images/cover.jpg', '/images/gallery.jpg', '/images/gallery.jpg', '/images/gallery.jpg']
                             .gallery__slide(style={'background-image': `url("${imageUrl}")`})
+                                .gallery__content
+                                    .content_small
+                                        .main-title.main-title_small.main-title_centered
+                                            span.main-title__summary Bromo
+                                            h2.main-title__text Steady your steps, we&nbsp;will climb together!
+                                        p Enjoying the vast expanse of&nbsp;the sea of sand, witnessing the splendor of&nbsp;Mount Semeru that soars into the sky, and gazing at&nbsp;the beauty of&nbsp;the sun moving out of&nbsp;its bed or&nbsp;otherwise enjoying the dim twilight from the Bromo ridge is&nbsp;an&nbsp;unforgettable experience when visiting Bromo.
+                                        a.arrow-link.arrow-link_centered(href="#")
+                                            | read more 
+                                            .arrow-link__icon.icon__arrow_rightward
             script(src="/js/index.js")

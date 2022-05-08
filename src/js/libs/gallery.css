@@ -1,9 +1,14 @@
 .gallery {
+	position: relative;
 	width: 100%;
 	overflow: hidden;
 	user-select: none;
 	-webkit-user-select: none;
-	padding: 0 3rem;
+	padding: 0;
+}
+
+.gallery-line-container {
+	overflow: hidden;
 }
 
 .gallery-draggable {
@@ -18,6 +23,7 @@
 	min-height: 1px;
 	float: left;
 	transform: translateZ(0);
+	overflow: hidden;
 }
 
 .gallery-dots {
@@ -46,7 +52,8 @@
 .gallery-nav {
 	display: flex;
 	justify-content: center;
-	padding: 1rem 0 0;
+	padding: 0;
+	z-index: 4;
 }
 
 .gallery-nav-disabled {
@@ -63,20 +70,20 @@
 	outline: none;
 	text-indent: -1234em;
 	top: 50%;
-	margin-top: -4rem;
+	margin-top: -3rem;
 	cursor: pointer;
 	transition: all 0.3s;
 }
 
 .gallery-nav-left {
 	left: 0;
-	background: url() no-repeat center;
+	background: url("./Images/left.svg") no-repeat center;
 	background-size: contain;
 }
 
 .gallery-nav-right {
 	right: 0;
-	background: url() no-repeat center;
+	background: url("./Images/right.svg") no-repeat center;
 	background-size: contain;
 }
 

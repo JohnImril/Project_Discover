@@ -48,13 +48,13 @@ class Gallery {
 			<div class="${GalleryLineContainerClassName}">
             	<div class="${GalleryLineClassName}">
              		${this.containerNode.innerHTML}
-            <div>
+            	</div>
 			</div>
             <div class="${GalleryNavClassName}">
                 <button class="${GalleryNavLeftClassName}">Left</button>
                 <button class="${GalleryNavRightClassName}">Right</button>
             </div>
-            <div class="${GalleryDotsClassName}"></div>
+            ${this.settings.dots ? `<div class="${GalleryDotsClassName}"></div>` : ""}
         `;
 
 		this.lineContainerNode = this.containerNode.querySelector(`.${GalleryLineContainerClassName}`);
