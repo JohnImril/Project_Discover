@@ -1,6 +1,5 @@
 .gallery {
 	position: relative;
-	width: 100%;
 	overflow: hidden;
 	user-select: none;
 	-webkit-user-select: none;
@@ -56,11 +55,6 @@
 	z-index: 4;
 }
 
-.gallery-nav-disabled {
-	opacity: 0.2;
-	pointer-events: none;
-}
-
 .gallery-nav-left,
 .gallery-nav-right {
 	position: absolute;
@@ -75,15 +69,20 @@
 	transition: all 0.3s;
 }
 
+.gallery-nav-disabled {
+	opacity: 0.2;
+	pointer-events: none;
+}
+
 .gallery-nav-left {
-	left: 0;
-	background: url("./Images/left.svg") no-repeat center;
+	background: url("./images/left.svg") no-repeat center;
 	background-size: contain;
+	left: 2rem;
 }
 
 .gallery-nav-right {
-	right: 0;
-	background: url("./Images/right.svg") no-repeat center;
+	right: 2rem;
+	background: url("./images/right.svg") no-repeat center;
 	background-size: contain;
 }
 

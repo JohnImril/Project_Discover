@@ -45,11 +45,11 @@ class Gallery {
 	manageHTML() {
 		this.containerNode.classList.add(GalleryClassName);
 		this.containerNode.innerHTML = `
-			<div class="${GalleryLineContainerClassName}">
-            	<div class="${GalleryLineClassName}">
-             		${this.containerNode.innerHTML}
-            	</div>
-			</div>
+            <div class="${GalleryLineContainerClassName}">
+                <div class="${GalleryLineClassName}">
+                    ${this.containerNode.innerHTML}
+                </div>
+            </div>
             <div class="${GalleryNavClassName}">
                 <button class="${GalleryNavLeftClassName}">Left</button>
                 <button class="${GalleryNavRightClassName}">Right</button>
@@ -59,7 +59,6 @@ class Gallery {
 
 		this.lineContainerNode = this.containerNode.querySelector(`.${GalleryLineContainerClassName}`);
 		this.lineNode = this.containerNode.querySelector(`.${GalleryLineClassName}`);
-		this.dotsNode = this.containerNode.querySelector(`.${GalleryDotsClassName}`);
 
 		this.slideNodes = Array.from(this.lineNode.children).map((childNode) =>
 			wrapElementByDiv({
@@ -69,27 +68,27 @@ class Gallery {
 		);
 
 		if (this.settings.dots) {
-			this.dotNodes = this.containerNode.querySelector(`.${GalleryDotsClassName}`);
+			this.dotsNode = this.containerNode.querySelector(`.${GalleryDotsClassName}`);
 
 			this.dotsNode.innerHTML = Array.from(Array(this.size).keys())
 				.map(
 					(key) =>
 						`<button class="${GalleryDotClassName} ${
 							key === this.currentSlide ? GalleryDotActiveClassName : ""
-						}"</button>`
+						}"></button>`
 				)
 				.join("");
 
-			this.dotNodes = this.lineContainerNode.querySelectorAll(`.${GalleryDotClassName}`);
+			this.dotNodes = this.dotsNode.querySelectorAll(`.${GalleryDotClassName}`);
 		}
 		this.navLeft = this.containerNode.querySelector(`.${GalleryNavLeftClassName}`);
 		this.navRight = this.containerNode.querySelector(`.${GalleryNavRightClassName}`);
 	}
 
 	setParameters() {
-		const coordsLineContainer = this.containerNode.getBoundingClientRect();
+		const coordsLineContainer = this.lineContainerNode.getBoundingClientRect();
 		this.width = coordsLineContainer.width;
-		this.maximumX = -(this.size - 1) * this.width;
+		this.maximumX = -(this.size - 1) * (this.width + this.settings.margin);
 		this.x = -this.currentSlide * (this.width + this.settings.margin);
 
 		this.resetStyleTransition();
@@ -113,6 +112,7 @@ class Gallery {
 		this.lineNode.addEventListener("pointerdown", this.startDrag);
 		window.addEventListener("pointerup", this.stopDrag);
 		window.addEventListener("pointercancel", this.stopDrag);
+		window.addEventListener("contextmenu", this.stopDrag);
 
 		if (this.settings.dots) {
 			this.dotsNode.addEventListener("click", this.clickDots);
@@ -126,6 +126,7 @@ class Gallery {
 		this.lineNode.removeEventListener("pointerdown", this.startDrag);
 		window.removeEventListener("pointerup", this.stopDrag);
 		window.removeEventListener("pointercancel", this.stopDrag);
+		window.removeEventListener("contextmenu", this.stopDrag);
 
 		if (this.settings.dots) {
 			this.dotsNode.removeEventListener("click", this.clickDots);
@@ -133,6 +134,7 @@ class Gallery {
 		this.navLeft.removeEventListener("click", this.moveToLeft);
 		this.navRight.removeEventListener("click", this.moveToRight);
 	}
+
 	resizeGallery() {
 		this.setParameters();
 	}
@@ -152,7 +154,6 @@ class Gallery {
 		window.removeEventListener("pointermove", this.dragging);
 
 		this.containerNode.classList.remove(GalleryDraggableClassName);
-
 		this.changeCurrentSlide();
 	}
 
@@ -161,6 +162,7 @@ class Gallery {
 		const dragShift = this.dragX - this.clickX;
 		const easing = dragShift / 5;
 		this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
+
 		this.setStylePosition();
 
 		// Change active slide
@@ -168,6 +170,7 @@ class Gallery {
 			this.currentSlideWasChanged = true;
 			this.currentSlide = this.currentSlide - 1;
 		}
+
 		if (dragShift < -20 && dragShift < 0 && !this.currentSlideWasChanged && this.currentSlide < this.size - 1) {
 			this.currentSlideWasChanged = true;
 			this.currentSlide = this.currentSlide + 1;
@@ -217,9 +220,8 @@ class Gallery {
 
 	changeCurrentSlide(countSwipes) {
 		this.x = -this.currentSlide * (this.width + this.settings.margin);
-		this.setStylePosition();
 		this.setStyleTransition(countSwipes);
-
+		this.setStylePosition();
 		if (this.settings.dots) {
 			this.changeActiveDotClass();
 		}
@@ -253,7 +255,7 @@ class Gallery {
 	}
 
 	setStyleTransition(countSwipes = 1) {
-		this.lineNode.style.transition = `all ${0.25 * countSwipes} ease 0s`;
+		this.lineNode.style.transition = `all ${0.25 * countSwipes}s ease 0s`;
 	}
 
 	resetStyleTransition() {
