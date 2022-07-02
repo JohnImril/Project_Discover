@@ -56,7 +56,7 @@ a
 	width 100%
 	&__content
 		display grid
-		grid-template-columns auto 1fr auto
+		grid-template-columns auto 1fr 
 		padding 0 $main_shift
 		align-items center
 	&__center
@@ -408,6 +408,111 @@ a
 			width 50%
 	.content
 		max-width 1200px
+
+.burger-menu{
+	display grid
+
+	&__content{
+		display: grid
+		grid-template-columns: 1fr auto
+	}
+
+	&__control {
+		display: none	
+	}
+}
+
+.space-cover {
+	position: fixed
+	top: 0
+	left 0
+	bottom: 0
+	right 0	
+	background: rgba(0,0,0,0.5)
+}
+
+/* Mobile versions */
+
+@media screen and (max-width: 1790px) {
+	.burger-menu{
+		position: fixed
+		display: block
+		top: 0
+		right: 0
+		bottom: 0
+		z-index: 999
+		width: 70vw
+		background: #000
+		transform: translate3d(70vw, 0, 0)
+		transition: transform 0.3s
+
+		&__content{
+			height: 100vh
+			display: block
+			padding: 1.3rem 0 2rem
+			box-sizing: border-box
+			display: grid
+			grid-template-columns: 1fr
+			grid-template-rows: 1fr auto
+		}
+
+		&__control{
+			display: block
+			width: 2rem
+			height: 2rem
+			position absolute
+			left: calc(-4.7rem - 2rem)
+			top: 2.1rem
+			background: url("../images/icons/menu.svg") no-repeat center center
+			background-size: contain
+			border: none
+			cursor pointer
+			transition: opacity 0.3s
+
+			&:hover{
+				opacity 0.7
+			}
+		}
+	}
+
+	.burger-menu__opened{
+		transform: translate3d(0, 0, 0)
+
+		.burger-menu__control{
+			left: -4rem
+			background: url("../images/icons/x.svg") 
+		}
+	}
+
+	.main-nav{
+		display: block
+		margin-bottom: 1rem
+
+		&__list{
+			display: block
+		}
+
+		&__link{
+			width 100%
+			box-sizing: border-box
+			text-align: center
+			transition: all 0.3s
+			padding: 1rem 1rem
+
+			&:hover,
+			&_active{
+				background: #fff
+				color: rgb(0, 0, 0)
+				opacity 1	
+				
+				&:visited{
+					color #000
+				}
+			}
+		}
+	}
+}
+
 
 @media screen and (max-width: 1550px)
 	html

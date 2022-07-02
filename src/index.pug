@@ -16,17 +16,21 @@ html(lang="ru")
 				.header__content
 					a.logo(href="/")
 						h1.logo__title QWERy
-					nav.main-nav.header__center
-						ul.main-nav__list
-							li.main-nav__item
-								a.main-nav__link.main-nav__link_active(href="#") Information
-							li.main-nav__item
-								a.main-nav__link(href="#") About&nbsp;us
-							li.main-nav__item 
-								a.main-nav__link(href="#") Culture
-					label.search
-						.search__icon
-						input.search__form(type="text", placeholder="Search")
+					.burger-menu.burger-menu__opened
+						.burger-menu__content
+							nav.main-nav.header__center
+								ul.main-nav__list
+									li.main-nav__item
+										a.main-nav__link.main-nav__link_active(href="#") Information
+									li.main-nav__item
+										a.main-nav__link(href="#") About&nbsp;us
+									li.main-nav__item 
+										a.main-nav__link(href="#") Culture
+							label.search
+								.search__icon
+								input.search__form(type="text", placeholder="Search")
+						button.burger-menu__control
+						.space-cover
 			.cover-space
 			section.section.section__main
 				.main-title
@@ -41,7 +45,7 @@ html(lang="ru")
 								.icon__instagram
 						li.social-networks__item
 							a.social-networks__link(href="#")
-							.icon__twitter
+								.icon__twitter
 						li.social-networks__item
 							a.social-networks__link(href="#")
 								.icon__facebook
