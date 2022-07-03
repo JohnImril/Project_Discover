@@ -5,6 +5,5 @@
 	"tabWidth": 4,
 	"useTabs": true,
 	"bracketSpacing": true,
-	"plugins": ["prettier-plugin-stylus"],
-	"trailingComma": "all"
+	"trailingComma": "es5"
 }

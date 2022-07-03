@@ -10,7 +10,6 @@
 		"npm": ">=6"
 	},
 	"devDependencies": {
-		"@prettier/plugin-pug": "^2.1.1",
 		"delete": "^1.1.0",
 		"gulp": "^4.0.2",
 		"gulp-clean-css": "^4.3.0",
@@ -25,16 +24,12 @@
 		"gulp-stylus": "^2.7.0",
 		"gulp-svg-sprite": "^1.5.0",
 		"gulp-uglify": "^3.0.2",
-		"prettier": "^2.7.1",
 		"pug": "^2.0.4"
 	},
 	"scripts": {
-		"dev": "gulp dev",
+		"start": "gulp dev",
 		"build": "NODE_ENV=production gulp build",
 		"clean": "gulp clean",
 		"server": "gulp server"
-	},
-	"dependencies": {
-		"prettier-plugin-stylus": "^0.0.1-beta.1"
 	}
 }
