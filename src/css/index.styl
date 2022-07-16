@@ -637,7 +637,7 @@ a {
 
 /* Mobile versions */
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
     .burger-menu {
         position: fixed;
         z-index: 999;
@@ -648,12 +648,12 @@ a {
         display: block;
         background: black;
         transform: translate3D(calc(70vw + 2px), 0, 0);
-        // transition: transform 0.3s;
+        transition: transform 0.3s;
 
         &__content {
             height: 100vh;
             display: block;
-            padding: 1.3rem 0 2rem;
+            padding: 0 0 2rem;
             box-sizing: border-box;
             display: grid;
             grid-template-columns: 1fr;
@@ -664,9 +664,7 @@ a {
             display: block;
             width: 2rem;
             height: 2rem;
-            position: absolute;
-            left: calc(-4.7rem - 2rem);
-            top: 2.1rem;
+
             background: url('../images/icons/menu.svg') no-repeat center center;
             background-size: contain;
             border: none;
@@ -679,9 +677,12 @@ a {
         }
     }
 
-    .logo{
+    .logo,
+    .burger-menu__control{
         transform: translate3D(0, 0, 0);
         transition: transform 0.3s; 
+        position: relative;
+        z-index: 999;
     }
 
     .page {
@@ -690,8 +691,13 @@ a {
     }
 
     .body_burder-opened {
-        .logo{
+        .logo,
+        .burger-menu__control{
             transform: translate3D(-70vw, 0, 0);
+        }
+
+        .burger-menu__control{
+            background-image: url('../images/icons/x.svg');
         }
 
         .page {
@@ -706,11 +712,6 @@ a {
 
         .burger-menu {
             transform: translate3D(0, 0, 0);
-
-            &__control {
-                left: -4rem;
-                background-image: url('../images/icons/x.svg');
-            }
         }
     }
 
@@ -727,7 +728,7 @@ a {
             box-sizing: border-box;
             text-align: center;
             transition: all 0.3s;
-            padding: 1rem 1rem;
+            padding: 1.25rem 1.2rem;
 
             &:hover,
             &_active {
@@ -740,7 +741,9 @@ a {
 
     .header {
         &__content {
-            padding: 0 1.5rem;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
         }
     }
 
@@ -775,10 +778,6 @@ a {
 
     .content {
         padding: 0 1.5rem 1.5rem;
-    }
-
-    .burger-menu__control {
-        left: calc(-1.5rem - 2rem);
     }
 
     .main-title {
