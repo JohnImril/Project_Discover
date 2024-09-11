@@ -3,10 +3,6 @@ new Gallery(document.getElementById("gallery"), {
 	dots: false,
 });
 
-/**
- * Burger
- */
-
 const BODY_BURDER_OPENED = "body_burder-opened";
 
 const bodyNode = document.querySelector("body");
